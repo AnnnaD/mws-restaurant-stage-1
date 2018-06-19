@@ -57,6 +57,7 @@ fillRestaurantHTML = (restaurant = self.restaurant) => {
 
   const image = document.getElementById('restaurant-img');
   image.className = 'restaurant-img'
+  image.setAttribute('alt', 'restaurant');
   image.src = DBHelper.imageUrlForRestaurant(restaurant);
 
   const cuisine = document.getElementById('restaurant-cuisine');
@@ -106,6 +107,7 @@ fillReviewsHTML = (reviews = self.restaurant.reviews) => {
     return;
   }
   const ul = document.getElementById('reviews-list');
+  ul.setAttribute('role', 'listbox');
   reviews.forEach(review => {
     ul.appendChild(createReviewHTML(review));
   });
@@ -116,7 +118,9 @@ fillReviewsHTML = (reviews = self.restaurant.reviews) => {
  * Create review HTML and add it to the webpage.
  */
 createReviewHTML = (review) => {
+
   const li = document.createElement('li');
+  li.setAttribute('role', 'option');
   const name = document.createElement('p');
   name.innerHTML = review.name;
   li.appendChild(name);
