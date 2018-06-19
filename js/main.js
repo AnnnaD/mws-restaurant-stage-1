@@ -35,6 +35,7 @@ fillNeighborhoodsHTML = (neighborhoods = self.neighborhoods) => {
     const option = document.createElement('option');
     option.innerHTML = neighborhood;
     option.value = neighborhood;
+    option.setAttribute('role', 'option');
     select.append(option);
   });
 }
@@ -63,6 +64,7 @@ fillCuisinesHTML = (cuisines = self.cuisines) => {
     const option = document.createElement('option');
     option.innerHTML = cuisine;
     option.value = cuisine;
+    option.setAttribute('role', 'option');
     select.append(option);
   });
 }
@@ -86,9 +88,19 @@ window.initMap = () => {
 /**
  * Update page and map for current restaurants.
  */
+ // const label_cuisine = document.createElement('label');
+ // label_cuisine.setAttribute('for','cuisines-select');
+//  const filter_options = document.querySelector('.filter-options');
+// filter_options.setAttribute('role', 'listbox');
+
 updateRestaurants = () => {
   const cSelect = document.getElementById('cuisines-select');
+  cSelect.setAttribute('role', 'listbox');
+  cSelect.setAttribute('aria-labelledby', 'cuisines');
+
   const nSelect = document.getElementById('neighborhoods-select');
+  nSelect.setAttribute('role', 'listbox');
+  nSelect.setAttribute('aria-labelledby', 'neighborhoods');
 
   const cIndex = cSelect.selectedIndex;
   const nIndex = nSelect.selectedIndex;
@@ -141,6 +153,8 @@ createRestaurantHTML = (restaurant) => {
   const image = document.createElement('img');
   image.className = 'restaurant-img';
   image.src = DBHelper.imageUrlForRestaurant(restaurant);
+  // accessibility photo by adding alt
+  image.setAttribute('alt', 'restaurant photo');
   li.append(image);
 
   const name = document.createElement('h1');
@@ -157,6 +171,8 @@ createRestaurantHTML = (restaurant) => {
 
   const more = document.createElement('a');
   more.innerHTML = 'View Details';
+  // ARIA
+  more.setAttribute('role', 'button');
   more.href = DBHelper.urlForRestaurant(restaurant);
   li.append(more)
 
