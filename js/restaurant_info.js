@@ -55,6 +55,7 @@ fillRestaurantHTML = (restaurant = self.restaurant) => {
   const address = document.getElementById('restaurant-address');
   address.innerHTML = restaurant.address;
 
+  // ARIA - adding alt to the images
   const image = document.getElementById('restaurant-img');
   image.className = 'restaurant-img'
   image.setAttribute('alt', 'restaurant');
@@ -76,6 +77,11 @@ fillRestaurantHTML = (restaurant = self.restaurant) => {
  */
 fillRestaurantHoursHTML = (operatingHours = self.restaurant.operating_hours) => {
   const hours = document.getElementById('restaurant-hours');
+
+  // ARIA - adding role and aria-label attributes
+  hours.setAttribute('role', 'table');
+  hours.setAttribute('aria-label', 'hours');
+
   for (let key in operatingHours) {
     const row = document.createElement('tr');
 
@@ -106,6 +112,8 @@ fillReviewsHTML = (reviews = self.restaurant.reviews) => {
     container.appendChild(noReviews);
     return;
   }
+
+  // ARIA - adding role attributes to the list
   const ul = document.getElementById('reviews-list');
   ul.setAttribute('role', 'listbox');
   reviews.forEach(review => {
@@ -119,6 +127,7 @@ fillReviewsHTML = (reviews = self.restaurant.reviews) => {
  */
 createReviewHTML = (review) => {
 
+// ARIA - adding option role to the options
   const li = document.createElement('li');
   li.setAttribute('role', 'option');
   const name = document.createElement('p');
