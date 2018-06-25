@@ -1,17 +1,19 @@
 
 // register sw
+self.addEventListener('fetch', function() {
 
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', function() {
-    navigator.serviceWorker.register('/sw.js').then(function() {
-      // Registration was successful
-      console.log('ServiceWorker registration successful');
-    }, function() {
-      // registration failed
-      console.log('ServiceWorker registration failed');
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function() {
+      navigator.serviceWorker.register('/sw.js').then(function() {
+        // Registration was successful
+        console.log('ServiceWorker registration successful');
+      }, function() {
+        // registration failed
+        console.log('ServiceWorker registration failed');
+      });
     });
-  });
-}
+  }
+});
 
 // files to cache
 
